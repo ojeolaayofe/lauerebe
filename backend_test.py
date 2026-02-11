@@ -99,7 +99,7 @@ class RealEstateAPITester:
             "POST",
             "auth/send-email-otp",
             200,
-            data={"contact": self.test_user_email}
+            data={"contact": self.test_user_email, "type": "email"}
         )
         
         if success and response.get("otp_for_testing"):

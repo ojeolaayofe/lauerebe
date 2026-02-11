@@ -86,12 +86,12 @@ const PropertiesPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <Select value={filters.property_type} onValueChange={(val) => handleFilterChange('property_type', val)}>
+            <Select value={filters.property_type || undefined} onValueChange={(val) => handleFilterChange('property_type', val)}>
               <SelectTrigger data-testid="property-type-filter">
                 <SelectValue placeholder="Property Type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Types</SelectItem>
+                <SelectItem value="all">All Types</SelectItem>
                 {Object.entries(PROPERTY_TYPE_LABELS).map(([key, label]) => (
                   <SelectItem key={key} value={key}>{label}</SelectItem>
                 ))}

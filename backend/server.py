@@ -38,7 +38,8 @@ api_router = APIRouter(prefix="/api")
 from routes import (auth_routes, property_routes, ai_routes, investment_routes, payment_routes, 
                     whatsapp_routes, user_routes, admin_routes, upload_routes, exit_resale_routes, 
                     supplier_routes, referral_routes, appointment_routes, document_routes, 
-                    materials_routes, occupancy_routes, notification_routes)
+                    materials_routes, occupancy_routes, notification_routes, social_routes,
+                    media_3d_routes, report_routes)
 
 # Root endpoint
 @api_router.get("/")

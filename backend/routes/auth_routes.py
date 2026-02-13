@@ -141,15 +141,17 @@ async def verify_whatsapp_otp(request: VerifyOTPRequest):
                 "email_verified": False,
                 "whatsapp_verified": True,
                 "favorites": [],
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "updated_at": None
             }
             await db.users.insert_one(user_doc)
-            user = user_doc
+            user = await db.users.find_one({"id": user_doc["id"]}, {"_id": 0})
         else:
             await db.users.update_one(
                 {"phone": request.contact},
                 {"$set": {"whatsapp_verified": True}}
             )
+            user = await db.users.find_one({"phone": request.contact}, {"_id": 0})
         
         access_token = create_access_token(data={"sub": user["id"]})
         

@@ -64,6 +64,9 @@ api_router.include_router(document_routes.router)
 api_router.include_router(materials_routes.router)
 api_router.include_router(occupancy_routes.router)
 api_router.include_router(notification_routes.router)
+api_router.include_router(social_routes.router)
+api_router.include_router(media_3d_routes.router)
+api_router.include_router(report_routes.router)
 
 # Include the router in the main app
 app.include_router(api_router)

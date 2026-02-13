@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
-import { MapPin, TrendingUp, Home, Calendar, DollarSign, Heart, MessageCircle, ArrowLeft } from 'lucide-react';
+import { MapPin, TrendingUp, Home, Calendar, DollarSign, Heart, MessageCircle, ArrowLeft, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency, PROPERTY_TYPE_LABELS } from '@/utils/constants';
 import { useAuth } from '@/context/AuthContext';
+import PropertyMap from '@/components/PropertyMap';
 import axios from 'axios';
 import { toast } from 'sonner';
 

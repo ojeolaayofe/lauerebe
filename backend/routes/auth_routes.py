@@ -166,7 +166,7 @@ async def verify_whatsapp_otp(request: VerifyOTPRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/me")
-async def get_current_user_info(current_user: dict = Depends(lambda: None)):
+async def get_current_user_info(credentials = Depends(security)):
     from auth import get_current_user
-    user = await get_current_user()
+    user = await get_current_user(credentials)
     return user

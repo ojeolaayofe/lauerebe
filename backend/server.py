@@ -51,6 +51,7 @@ api_router.include_router(payment_routes.router)
 api_router.include_router(whatsapp_routes.router)
 api_router.include_router(user_routes.router)
 api_router.include_router(admin_routes.router)
+api_router.include_router(upload_routes.router)
 
 # Include the router in the main app
 app.include_router(api_router)

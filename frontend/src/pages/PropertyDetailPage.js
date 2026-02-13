@@ -275,6 +275,16 @@ const PropertyDetailPage = () => {
                 </Button>
 
                 <Button
+                  onClick={() => navigate(`/materials/${property.id}`)}
+                  variant="outline"
+                  className="w-full rounded-full py-3"
+                  data-testid="materials-button"
+                >
+                  <TrendingUp size={20} className="mr-2" />
+                  View Materials & Labour Progress
+                </Button>
+
+                <Button
                   variant="outline"
                   className="w-full rounded-full py-3"
                   data-testid="contact-button"

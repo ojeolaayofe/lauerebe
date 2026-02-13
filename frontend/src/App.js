@@ -14,6 +14,7 @@ import AdminDashboard from '@/pages/AdminDashboard';
 import AdminPropertyManagement from '@/pages/AdminPropertyManagement';
 import ExitResaleMarketplace from '@/pages/ExitResaleMarketplace';
 import SupplierDashboard from '@/pages/SupplierDashboard';
+import MaterialsLabourTracking from '@/pages/MaterialsLabourTracking';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="/admin/properties" element={<AdminPropertyManagement />} />
               <Route path="/exit-marketplace" element={<ExitResaleMarketplace />} />
               <Route path="/supplier" element={<SupplierDashboard />} />
+              <Route path="/materials/:propertyId" element={<MaterialsLabourTracking />} />
             </Routes>
           </main>
           <Footer />

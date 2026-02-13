@@ -1,6 +1,8 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
@@ -16,6 +18,18 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
 app = FastAPI(title="Real Estate Investment Platform API")
+
+# Middleware to ensure HTTPS in redirects
+class HTTPSRedirectMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        if response.status_code in (301, 302, 303, 307, 308):
+            location = response.headers.get("location")
+            if location and location.startswith("http://"):
+                response.headers["location"] = location.replace("http://", "https://", 1)
+        return response
+
+app.add_middleware(HTTPSRedirectMiddleware)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")

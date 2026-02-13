@@ -454,7 +454,17 @@ def main():
         tester.test_calculate_instalment,
         tester.test_send_email_otp,
         tester.test_verify_email_otp,
-        tester.test_user_current_info
+        tester.test_user_current_info,
+        tester.test_social_feed,
+        tester.test_materials_property_plan,
+        tester.test_occupancy_data,
+        tester.test_exit_marketplace,
+        tester.test_referral_code,
+        tester.test_appointments_list,
+        tester.test_notifications_system,
+        tester.test_investment_report_pdf,
+        tester.test_ai_recommendations,
+        tester.test_dashboard_stats
     ]
     
     # Run all tests

@@ -89,14 +89,14 @@ const AdminDashboard = () => {
           <Card className="p-6 bg-white">
             <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
             <div className="space-y-3">
-              <button className="w-full text-left p-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
-                Add New Property
+              <a href="/admin/properties" className="block w-full text-left p-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                Manage Properties
+              </a>
+              <button className="w-full text-left p-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors">
+                View Exit Requests
               </button>
               <button className="w-full text-left p-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors">
-                View All Users
-              </button>
-              <button className="w-full text-left p-3 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors">
-                View Transactions
+                Review Suppliers
               </button>
             </div>
           </Card>

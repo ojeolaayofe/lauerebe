@@ -213,6 +213,231 @@ class RealEstateAPITester:
         
         return success
 
+    def test_social_feed(self):
+        """Test social media feed"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        success, response = self.run_test(
+            "Social Feed",
+            "GET",
+            "social/feed",
+            200
+        )
+        
+        return success
+
+    def test_materials_property_plan(self):
+        """Test materials and labour plan for a property"""
+        # Get first property to test
+        success, properties = self.run_test(
+            "Get Properties for Materials Test",
+            "GET",
+            "properties",
+            200,
+            data={"limit": 1}
+        )
+        
+        if not success or not properties:
+            print("   No properties available to test materials endpoint")
+            return True
+            
+        property_id = properties[0]['id']
+        success, response = self.run_test(
+            "Materials Property Plan",
+            "GET",
+            f"materials/property/{property_id}",
+            200
+        )
+        
+        return success
+
+    def test_occupancy_data(self):
+        """Test occupancy data for a property"""
+        # Get first property to test
+        success, properties = self.run_test(
+            "Get Properties for Occupancy Test",
+            "GET",
+            "properties",
+            200,
+            data={"limit": 1}
+        )
+        
+        if not success or not properties:
+            print("   No properties available to test occupancy endpoint")
+            return True
+            
+        property_id = properties[0]['id']
+        success, response = self.run_test(
+            "Property Occupancy Data",
+            "GET",
+            f"occupancy/property/{property_id}",
+            200
+        )
+        
+        return success
+
+    def test_exit_marketplace(self):
+        """Test exit/resale marketplace"""
+        success, response = self.run_test(
+            "Exit Marketplace",
+            "GET",
+            "exit-resale/marketplace",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   Found {len(response)} resale opportunities")
+        
+        return success
+
+    def test_referral_code(self):
+        """Test referral code system"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        success, response = self.run_test(
+            "My Referral Code",
+            "GET",
+            "referrals/my-referral-code",
+            200
+        )
+        
+        if success and response.get("code"):
+            print(f"   Referral Code: {response['code']}")
+        
+        return success
+
+    def test_appointments_list(self):
+        """Test appointments list"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        success, response = self.run_test(
+            "My Appointments",
+            "GET",
+            "appointments/my-appointments",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   Found {len(response)} appointments")
+        
+        return success
+
+    def test_notifications_system(self):
+        """Test notifications system"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        # Test unread count
+        success, response = self.run_test(
+            "Notifications Unread Count",
+            "GET",
+            "notifications/unread-count",
+            200
+        )
+        
+        if success:
+            print(f"   Unread Notifications: {response.get('unread_count', 0)}")
+        
+        # Test notifications list
+        success2, response2 = self.run_test(
+            "My Notifications",
+            "GET",
+            "notifications/my-notifications",
+            200
+        )
+        
+        if success2 and isinstance(response2, list):
+            print(f"   Total Notifications: {len(response2)}")
+        
+        return success and success2
+
+    def test_investment_report_pdf(self):
+        """Test PDF report generation for investments"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        # Get user's investments first
+        success, investments = self.run_test(
+            "Get My Investments for PDF Test",
+            "GET",
+            "investments/my-investments",
+            200
+        )
+        
+        if not success or not investments:
+            print("   No investments available to test PDF report")
+            return True
+            
+        investment_id = investments[0]['id']
+        
+        # Test PDF generation (expect PDF binary response)
+        url = f"{self.base_url}/reports/investment/{investment_id}"
+        headers = {'Authorization': f'Bearer {self.token}'}
+        
+        try:
+            response = requests.get(url, headers=headers)
+            success = response.status_code == 200 and response.headers.get('content-type') == 'application/pdf'
+            
+            self.tests_run += 1
+            if success:
+                self.tests_passed += 1
+                print(f"\n🔍 Testing Investment PDF Report...")
+                print(f"✅ Passed - PDF generated successfully ({len(response.content)} bytes)")
+            else:
+                print(f"\n🔍 Testing Investment PDF Report...")
+                print(f"❌ Failed - Status: {response.status_code}, Content-Type: {response.headers.get('content-type')}")
+            
+            return success
+        except Exception as e:
+            print(f"❌ Failed - Error: {str(e)}")
+            return False
+
+    def test_ai_recommendations(self):
+        """Test AI property recommendations"""
+        success, response = self.run_test(
+            "AI Property Recommendations",
+            "POST",
+            "ai/recommendations",
+            200,
+            data={
+                "budget": 5000000,
+                "currency": "NGN",
+                "preferred_location": "Oye Ekiti"
+            }
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   Found {len(response)} AI recommendations")
+        
+        return success
+
+    def test_dashboard_stats(self):
+        """Test admin dashboard statistics (try with current token)"""
+        if not self.token:
+            print("   Skipped - No authentication token")
+            return True
+            
+        success, response = self.run_test(
+            "Dashboard Statistics",
+            "GET",
+            "admin/dashboard-stats",
+            200
+        )
+        
+        # This might fail with 403 if user is not admin, which is expected
+        if not success:
+            print("   Note: This may fail if user is not admin (expected)")
+        
+        return success  # We'll consider this test passed even if 403
+
 def main():
     print("🚀 Starting Real Estate Platform API Tests")
     print("=" * 50)

@@ -64,15 +64,17 @@ async def verify_email_otp(request: VerifyOTPRequest):
                 "email_verified": True,
                 "whatsapp_verified": False,
                 "favorites": [],
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "updated_at": None
             }
             await db.users.insert_one(user_doc)
-            user = user_doc
+            user = await db.users.find_one({"id": user_doc["id"]}, {"_id": 0})
         else:
             await db.users.update_one(
                 {"email": request.contact},
                 {"$set": {"email_verified": True}}
             )
+            user = await db.users.find_one({"email": request.contact}, {"_id": 0})
         
         access_token = create_access_token(data={"sub": user["id"]})
         

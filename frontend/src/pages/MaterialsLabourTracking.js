@@ -9,9 +9,23 @@ import axios from 'axios';
 
 const MaterialsLabourTracking = () => {
   const { propertyId } = useParams();
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [plan, setPlan] = useState(null);
   const [contributions, setContributions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showContributeDialog, setShowContributeDialog] = useState(false);
+  const [contributeType, setContributeType] = useState('materials'); // materials or labour
+
+  const [contributionForm, setContributionForm] = useState({
+    materials_amount: 0,
+    labour_amount: 0,
+    labour_category: '',
+    labour_days: 0,
+    contributor_name: '',
+    contributor_email: '',
+    contributor_phone: ''
+  });
 
   useEffect(() => {
     if (propertyId) {

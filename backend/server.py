@@ -57,6 +57,12 @@ api_router.include_router(admin_routes.router)
 api_router.include_router(upload_routes.router)
 api_router.include_router(exit_resale_routes.router)
 api_router.include_router(supplier_routes.router)
+api_router.include_router(referral_routes.router)
+api_router.include_router(appointment_routes.router)
+api_router.include_router(document_routes.router)
+api_router.include_router(materials_routes.router)
+api_router.include_router(occupancy_routes.router)
+api_router.include_router(notification_routes.router)
 
 # Include the router in the main app
 app.include_router(api_router)

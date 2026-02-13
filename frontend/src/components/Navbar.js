@@ -31,9 +31,17 @@ export const Navbar = () => {
             <Link to="/calculator" className="text-slate-600 hover:text-primary transition-colors" data-testid="nav-calculator">
               Calculator
             </Link>
+            <Link to="/exit-marketplace" className="text-slate-600 hover:text-primary transition-colors" data-testid="nav-marketplace">
+              Marketplace
+            </Link>
             {isAuthenticated && (
               <Link to="/dashboard" className="text-slate-600 hover:text-primary transition-colors" data-testid="nav-dashboard">
                 Dashboard
+              </Link>
+            )}
+            {user?.role === 'supplier' && (
+              <Link to="/supplier" className="text-slate-600 hover:text-primary transition-colors" data-testid="nav-supplier">
+                Supplier
               </Link>
             )}
             {user?.role === 'admin' && (

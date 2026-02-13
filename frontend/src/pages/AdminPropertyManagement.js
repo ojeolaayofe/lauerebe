@@ -225,7 +225,8 @@ const AdminPropertyManagement = () => {
                         <SelectValue placeholder="Property Type" />
                       </SelectTrigger>
                       <SelectContent>
-                        {Object.entries(PROPERTY_TYPE_LABELS).map(([key, label]) => (\n                          <SelectItem key={key} value={key}>{label}</SelectItem>
+                        {Object.entries(PROPERTY_TYPE_LABELS).map(([key, label]) => (
+                          <SelectItem key={key} value={key}>{label}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

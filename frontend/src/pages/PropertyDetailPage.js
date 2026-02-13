@@ -186,6 +186,16 @@ const PropertyDetailPage = () => {
                   </div>
                 </div>
               )}
+
+              {/* Location Map */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Location</h3>
+                <PropertyMap 
+                  location={property.location} 
+                  title={property.title}
+                  address={property.location}
+                />
+              </div>
             </motion.div>
           </div>
 

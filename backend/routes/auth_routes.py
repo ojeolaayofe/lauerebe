@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
+from fastapi.security import HTTPBearer
 from models import SendOTPRequest, VerifyOTPRequest, LoginRequest, AuthResponse, UserCreate, User
 from auth import create_access_token, db
 import random
@@ -7,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 import uuid
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
+security = HTTPBearer()
 
 def generate_otp_code() -> str:
     return ''.join(random.choices(string.digits, k=6))

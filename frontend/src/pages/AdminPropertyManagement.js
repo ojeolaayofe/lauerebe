@@ -225,8 +225,7 @@ const AdminPropertyManagement = () => {
                         <SelectValue placeholder="Property Type" />
                       </SelectTrigger>
                       <SelectContent>
-                        {Object.entries(PROPERTY_TYPE_LABELS).map(([key, label]) => (
-                          <SelectItem key={key} value={key}>{label}</SelectItem>
+                        {Object.entries(PROPERTY_TYPE_LABELS).map(([key, label]) => (\n                          <SelectItem key={key} value={key}>{label}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -238,6 +237,12 @@ const AdminPropertyManagement = () => {
                       required
                     />
                   </div>
+
+                  <Input
+                    placeholder="Virtual Tour URL (e.g., YouTube, Matterport, 360 tour link)"
+                    value={formData.virtual_tour_url || ''}
+                    onChange={(e) => setFormData({...formData, virtual_tour_url: e.target.value})}
+                  />
 
                   <div className="grid grid-cols-3 gap-4">
                     <Input

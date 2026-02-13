@@ -11,6 +11,9 @@ import PropertyDetailPage from '@/pages/PropertyDetailPage';
 import CalculatorPage from '@/pages/CalculatorPage';
 import DashboardPage from '@/pages/DashboardPage';
 import AdminDashboard from '@/pages/AdminDashboard';
+import AdminPropertyManagement from '@/pages/AdminPropertyManagement';
+import ExitResaleMarketplace from '@/pages/ExitResaleMarketplace';
+import SupplierDashboard from '@/pages/SupplierDashboard';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
               <Route path="/calculator" element={<CalculatorPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/properties" element={<AdminPropertyManagement />} />
+              <Route path="/exit-marketplace" element={<ExitResaleMarketplace />} />
+              <Route path="/supplier" element={<SupplierDashboard />} />
             </Routes>
           </main>
           <Footer />

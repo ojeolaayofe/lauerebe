@@ -12,6 +12,7 @@ import CalculatorPage from '@/pages/CalculatorPage';
 import DashboardPage from '@/pages/DashboardPage';
 import AdminDashboard from '@/pages/AdminDashboard';
 import AdminPropertyManagement from '@/pages/AdminPropertyManagement';
+import AdminMaterialsManagement from '@/pages/AdminMaterialsManagement';
 import ExitResaleMarketplace from '@/pages/ExitResaleMarketplace';
 import SupplierDashboard from '@/pages/SupplierDashboard';
 import MaterialsLabourTracking from '@/pages/MaterialsLabourTracking';
@@ -32,6 +33,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/properties" element={<AdminPropertyManagement />} />
+              <Route path="/admin/materials" element={<AdminMaterialsManagement />} />
               <Route path="/exit-marketplace" element={<ExitResaleMarketplace />} />
               <Route path="/supplier" element={<SupplierDashboard />} />
               <Route path="/materials/:propertyId" element={<MaterialsLabourTracking />} />

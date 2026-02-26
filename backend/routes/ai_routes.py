@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from models import GenerateDescriptionRequest, RecommendationRequest, ChatRequest, InvestmentProjectionRequest
 from auth import db
-from emergentintegrations.llm.chat import LlmChat, UserMessage
+#from emergentintegrations.llm.chat import LlmChat, UserMessage
 import os
 from dotenv import load_dotenv
 

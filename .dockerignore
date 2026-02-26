@@ -1,0 +1,44 @@
+# Node modules
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# Environment files (will be set via docker-compose)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Logs
+logs
+*.log
+
+# Testing
+coverage
+.nyc_output
+test_reports
+
+# OS
+.DS_Store
+Thumbs.db

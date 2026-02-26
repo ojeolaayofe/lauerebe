@@ -35,7 +35,7 @@ app.add_middleware(HTTPSRedirectMiddleware)
 api_router = APIRouter(prefix="/api")
 
 # Import route modules
-from routes import (auth_routes, property_routes, ai_routes, investment_routes, payment_routes, 
+from routes import (auth_routes, property_routes, investment_routes, payment_routes, 
                     whatsapp_routes, user_routes, admin_routes, upload_routes, exit_resale_routes, 
                     supplier_routes, referral_routes, appointment_routes, document_routes, 
                     materials_routes, occupancy_routes, notification_routes, social_routes,
@@ -49,7 +49,7 @@ async def root():
 # Include all routers
 api_router.include_router(auth_routes.router)
 api_router.include_router(property_routes.router)
-api_router.include_router(ai_routes.router)
+#api_router.include_router(ai_routes.router)
 api_router.include_router(investment_routes.router)
 api_router.include_router(payment_routes.router)
 api_router.include_router(whatsapp_routes.router)

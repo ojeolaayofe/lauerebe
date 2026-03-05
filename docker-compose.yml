@@ -58,8 +58,7 @@ services:
     container_name: real-estate-frontend
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "2000:80"
     depends_on:
       - backend
     networks:

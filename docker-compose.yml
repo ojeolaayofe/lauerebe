@@ -52,7 +52,7 @@ services:
       context: .
       dockerfile: Dockerfile.frontend
       args:
-        REACT_APP_BACKEND_URL: http://backend:8001
+        REACT_APP_BACKEND_URL: http://78.47.173.128:8001
     container_name: real-estate-frontend
     restart: unless-stopped
     ports:
